@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <html>
     <body>
-        <form action="/JSP_y_JDBC/servlet-login" method="POST">
+        <form action="/JSP_y_JDBC/nuevo_usuario" method="POST">
             <p>Usuario: <input type="text" name="nick"/></p>
             <p>Contraseña: <input type="password" name="passwd"/></p>
             <p>Nombre: <input type="text" name="nombre"/></p>

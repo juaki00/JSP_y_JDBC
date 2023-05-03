@@ -29,10 +29,6 @@ public class nuevoUsuarioServlet extends HttpServlet {
             IOException {
         Usuario usuario = (Usuario)
                 req.getSession().getAttribute("usuarioSesion");
-//
-//        if (usuario == null) {
-//            resp.sendRedirect("/JSP_y_JDBC/index.jsp");
-//        } else {
         try {
 
 
@@ -51,7 +47,7 @@ public class nuevoUsuarioServlet extends HttpServlet {
 
             controller.insertUser(nickIntroducido,passIntroducido,nombreIntroducido, apellidoIntroducido, telefonoIntroducido, emailIntroducido);
             System.out.println("Usuario insertado");
-            resp.sendRedirect("/JSP_y_JDBC/comun/usuarios.jsp");
+            resp.sendRedirect("/JSP_y_JDBC/nuevo_usuario-pre");
 
 
         } catch (SQLException | ClassNotFoundException e) {
