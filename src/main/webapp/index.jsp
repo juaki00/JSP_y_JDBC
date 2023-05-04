@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./css/all.css">
     <style>
         .login{
-            background: url('./dist/images/login-new.jpeg')
+            <!--background: url('./dist/images/login-new.jpeg')-->
         }
     </style>
 </head>
