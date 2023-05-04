@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "nuevoUsuarioServlet", urlPatterns ={"/nuevo_usuario"})
+@WebServlet(name = "nuevoUsuarioServlet", urlPatterns = {"/nuevo_usuario"})
 public class nuevoUsuarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -31,7 +31,6 @@ public class nuevoUsuarioServlet extends HttpServlet {
                 req.getSession().getAttribute("usuarioSesion");
         try {
 
-
             String nickIntroducido = req.getParameter("nick");
             String passIntroducido = req.getParameter("passwd");
             String nombreIntroducido = req.getParameter("nombre");
@@ -41,13 +40,17 @@ public class nuevoUsuarioServlet extends HttpServlet {
 
             UserController controller = new UserController(new UserManagerImpl());
 
-            if(controller.existeNick(nickIntroducido)){
+            if (controller.existeNick(nickIntroducido)) {
+                req.getSession().setAttribute("existe", "El nick " + nickIntroducido + " ya existe");
+                resp.sendRedirect("/JSP_y_JDBC/comun/nuevoUsuario.jsp");
+            } else {
 
+                controller.insertUser(nickIntroducido, passIntroducido, nombreIntroducido, apellidoIntroducido, telefonoIntroducido, emailIntroducido);
+                System.out.println("Usuario insertado");
+                UserController userController = new UserController(new UserManagerImpl());
+                req.getSession().setAttribute("listaUsuarios", userController.findAllUsuario());
+                resp.sendRedirect("/JSP_y_JDBC/usuarios.jsp");
             }
-
-            controller.insertUser(nickIntroducido,passIntroducido,nombreIntroducido, apellidoIntroducido, telefonoIntroducido, emailIntroducido);
-            System.out.println("Usuario insertado");
-            resp.sendRedirect("/JSP_y_JDBC/nuevo_usuario-pre");
 
 
         } catch (SQLException | ClassNotFoundException e) {

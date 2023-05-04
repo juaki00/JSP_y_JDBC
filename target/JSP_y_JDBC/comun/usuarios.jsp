@@ -37,7 +37,10 @@
         <td><img src="https://cdn-icons-png.flaticon.com/128/3858/3858474.png" alt="">
             <img src="https://cdn-icons-png.flaticon.com/512/3159/3159218.png" alt=""></td>
     </tr>
-    <% } %>
+    <%}
+    if(request.getAttribute("existe")!=null){%>
+    <p><%=request.getAttribute("existe")%></p>
+    <%}%>
 
 </table>
 <form action="/JSP_y_JDBC/comun/nuevoUsuario.jsp">
